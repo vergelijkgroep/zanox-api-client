@@ -2,6 +2,7 @@
 namespace vergelijkgroep\ZanoxApi;
 
 use Httpful\Request;
+use vergelijkgroep\ZanoxApi\Exceptions\ZanoxApiException;
 
 class ZanoxClient {
     /**
@@ -36,7 +37,8 @@ class ZanoxClient {
      * @return array Sales for this date
      */
     public function getSalesForDate(\DateTime $date) {
-        $saleXml = $this->makeRequest('/reports/sales/date/' . $date->format('Y-m-d'));
+        $saleUri = '/reports/sales/date/' . $date->format('Y-m-d');
+        $saleXml = $this->makeRequest($saleUri);
 
         $sales = [];
 
@@ -50,19 +52,35 @@ class ZanoxClient {
     /**
      * Make an API request
      * @param $resource string URI to request (without the base endpoint)
+     * @param $query    string Query parameters
      * @return array|object|string
      */
-    protected function makeRequest($resource) {
+    protected function makeRequest($resource, $query = "") {
         $signature = $this->signRequest('GET', $resource);
         $uri = $this->endpoint . $resource;
 
-        $request = Request::get($uri)
+        $request = Request::get($uri . $query)
             ->expectsXml()
             ->addHeader('Authorization', 'ZXWS ' . $this->connectId . ':' . $signature['signature'])
             ->addHeader('Date', $signature['timestamp'])
             ->addHeader('nonce', $signature['nonce']);
 
         $response = $request->send();
+
+        // Check for errors
+        if ($response->hasErrors()) {
+            $message = 'Unknown error';
+
+            if (isset($response->body->message)) {
+                $message = (string)$response->body->message;
+            }
+
+            if (isset($response->body->reason)) {
+                $message .= ' Reason: ' . (string)$response->body->reason;
+            }
+
+            throw new ZanoxApiException($message);
+        }
 
         return $response->body;
     }
