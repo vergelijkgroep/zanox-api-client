@@ -6,6 +6,11 @@
         "nategood/httpful": "^0.2.20"
     },
     "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "vergelijkgroep\\ZanoxApi\\": "src"
+        }
+    },
     "authors": [
         {
             "name": "Geert Wirken",
