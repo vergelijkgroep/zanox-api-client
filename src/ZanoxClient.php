@@ -36,7 +36,15 @@ class ZanoxClient {
      * @return array Sales for this date
      */
     public function getSalesForDate(\DateTime $date) {
-        return $this->makeRequest('/reports/sales/date/' . $date->format('Y-m-d'));
+        $saleXml = $this->makeRequest('/reports/sales/date/' . $date->format('Y-m-d'));
+
+        $sales = [];
+
+        foreach ($saleXml->saleItems->saleItem as $saleItem) {
+            $sales[] = Sale::createFromXml($saleItem);
+        }
+
+        return $sales;
     }
 
     /**
