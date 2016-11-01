@@ -1,0 +1,15 @@
+{
+    "name": "vergelijkgroep/zanox-api-client",
+    "description": "Zanox API client",
+    "type": "library",
+    "require": {
+        "nategood/httpful": "^0.2.20"
+    },
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Geert Wirken",
+            "email": "geert@vergelijkgroep.nl"
+        }
+    ]
+}
