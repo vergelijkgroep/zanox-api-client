@@ -1,9 +1,9 @@
 <?php
-namespace vergelijkgroep\ZanoxApi;
+namespace whitelabeled\ZanoxApi;
 
 use DateTime;
 use Httpful\Request;
-use vergelijkgroep\ZanoxApi\Exceptions\ZanoxApiException;
+use whitelabeled\ZanoxApi\Exceptions\ZanoxApiException;
 
 class ZanoxClient {
     /**
@@ -46,7 +46,6 @@ class ZanoxClient {
         $saleUri = '/reports/sales/date/' . $date->format('Y-m-d');
 
         $saleXml = $this->makeRequest($saleUri, '?items=' . $this->itemsPerPage . '&page=' . $page);
-        echo $saleUri . '?items=' . $this->itemsPerPage . '&page=' . $page . "\n";
 
         $sales = [];
 

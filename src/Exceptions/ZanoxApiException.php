@@ -1,5 +1,5 @@
 <?php
-namespace vergelijkgroep\ZanoxApi\Exceptions;
+namespace whitelabeled\ZanoxApi\Exceptions;
 
 class ZanoxApiException extends \Exception {
 

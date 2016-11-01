@@ -1,5 +1,5 @@
 {
-    "name": "vergelijkgroep/zanox-api-client",
+    "name": "whitelabeled/zanox-api-client",
     "description": "Zanox API client",
     "type": "library",
     "require": {
@@ -8,13 +8,13 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "vergelijkgroep\\ZanoxApi\\": "src"
+            "whitelabeled\\ZanoxApi\\": "src"
         }
     },
     "authors": [
         {
-            "name": "Vergelijkgroep",
-            "email": "info@vergelijkgroep.nl"
+            "name": "Whitelabeled",
+            "email": "info@Whitelabeled.nl"
         }
     ]
 }

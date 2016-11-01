@@ -1,5 +1,5 @@
 <?php
-namespace vergelijkgroep\ZanoxApi;
+namespace whitelabeled\ZanoxApi;
 
 use \DateTime;
 use SimpleXMLElement;

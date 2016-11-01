@@ -8,7 +8,7 @@ Usage:
 <?php
 require 'vendor/autoload.php';
 
-$client = new \vergelijkgroep\ZanoxApi\ZanoxClient('1234567890ABCDEF1234', 'yoursecret');
+$client = new \whitelabeled\ZanoxApi\ZanoxClient('1234567890ABCDEF1234', 'yoursecret');
 $sales = $client->getSalesForDate(new \DateTime('2016-10-28'));
 
 print_r($sales);
@@ -98,6 +98,6 @@ Array
 
 ## License
 
-© Vergelijkgroep BV
+© Whitelabeled BV
 
 MIT license, see [LICENSE.txt](LICENSE.txt) for details.
