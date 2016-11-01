@@ -2,6 +2,7 @@
 namespace vergelijkgroep\ZanoxApi;
 
 use \DateTime;
+use SimpleXMLElement;
 
 class Sale {
     /**
@@ -74,29 +75,31 @@ class Sale {
      */
     public $gpps;
 
-    public static function createFromXml(\SimpleXMLElement $saleItem) {
+    public static function createFromXml(SimpleXMLElement $saleItem) {
         $sale = new Sale();
 
-        $sale->id = (string) $saleItem->attributes()->id;
-        $sale->reviewState = (string) $saleItem->reviewState;
-        $sale->reviewNote = (string) $saleItem->reviewNote;
+        $sale->id = (string)$saleItem->attributes()->id;
+        $sale->reviewState = (string)$saleItem->reviewState;
+        $sale->reviewNote = (string)$saleItem->reviewNote;
         $sale->trackingDate = new DateTime($saleItem->trackingDate);
         $sale->clickDate = new DateTime($saleItem->clickDate);
         $sale->modifiedDate = new DateTime($saleItem->modifiedDate);
-        $sale->adSpace = (string) $saleItem->adspace;
-        $sale->adMedium = (string) $saleItem->admedium;
-        $sale->program = (string) $saleItem->program;
-        $sale->clickId = (string) $saleItem->clickId;
-        $sale->currency = (string) $saleItem->currency;
-        $sale->amount = (double) $saleItem->amount;
-        $sale->commission = (double) $saleItem->commission;
+        $sale->adSpace = (string)$saleItem->adspace;
+        $sale->adMedium = (string)$saleItem->admedium;
+        $sale->program = (string)$saleItem->program;
+        $sale->clickId = (string)$saleItem->clickId;
+        $sale->currency = (string)$saleItem->currency;
+        $sale->amount = (double)$saleItem->amount;
+        $sale->commission = (double)$saleItem->commission;
 
         $sale->gpps = array();
 
-        foreach ($saleItem->gpps->gpp as $gppItem) {
-            $gppVarName = (string) $gppItem->attributes()->id;
-            $gppValue = (string) $gppItem;
-            $sale->gpps[$gppVarName] = $gppValue;
+        if (isset($saleItem->gpps)) {
+            foreach ($saleItem->gpps->gpp as $gppItem) {
+                $gppVarName = (string)$gppItem->attributes()->id;
+                $gppValue = (string)$gppItem;
+                $sale->gpps[$gppVarName] = $gppValue;
+            }
         }
 
         return $sale;
