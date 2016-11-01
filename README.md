@@ -1,5 +1,9 @@
 # Zanox API client
 
+[![Latest Stable Version](https://img.shields.io/packagist/v/whitelabeled/zanox-api-client.svg)](https://packagist.org/packages/whitelabeled/zanox-api-client)
+[![Total Downloads](https://img.shields.io/packagist/dt/whitelabeled/zanox-api-client.svg)](https://packagist.org/packages/whitelabeled/zanox-api-client)
+[![License](https://img.shields.io/packagist/l/whitelabeled/zanox-api-client.svg)](https://packagist.org/packages/whitelabeled/zanox-api-client)
+
 Library to retrieve sales from the Zanox publisher API.
 
 Usage:
