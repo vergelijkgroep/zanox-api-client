@@ -21,7 +21,7 @@ print_r($sales);
 
 Array
 (
-    [0] => vergelijkgroep\ZanoxApi\Sale Object
+    [0] => whitelabeled\ZanoxApi\Sale Object
         (
             [id] => 09517c85-f2cc-4e33-86b6-7d61233264a7
             [reviewState] => open
@@ -60,7 +60,7 @@ Array
                 )
 
         )
-    [1] => vergelijkgroep\ZanoxApi\Sale Object
+    [1] => whitelabeled\ZanoxApi\Sale Object
         (
             [id] => 7b3bc3c6-b234-4488-bcc6-ae95849303d6
             [reviewState] => open
