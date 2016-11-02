@@ -81,9 +81,15 @@ class Sale {
         $sale->id = (string)$saleItem->attributes()->id;
         $sale->reviewState = (string)$saleItem->reviewState;
         $sale->reviewNote = (string)$saleItem->reviewNote;
-        $sale->trackingDate = new DateTime($saleItem->trackingDate);
-        $sale->clickDate = new DateTime($saleItem->clickDate);
-        $sale->modifiedDate = new DateTime($saleItem->modifiedDate);
+        if (isset($saleItem->trackingDate)) {
+            $sale->trackingDate = new DateTime($saleItem->trackingDate);
+        }
+        if (isset($saleItem->clickDate)) {
+            $sale->clickDate = new DateTime($saleItem->clickDate);
+        }
+        if (isset($saleItem->modifiedDate)) {
+            $sale->modifiedDate = new DateTime($saleItem->modifiedDate);
+        }
         $sale->adSpace = (string)$saleItem->adspace;
         $sale->adMedium = (string)$saleItem->admedium;
         $sale->program = (string)$saleItem->program;
