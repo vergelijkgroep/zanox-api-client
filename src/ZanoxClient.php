@@ -40,7 +40,7 @@ class ZanoxClient {
      * Get all sales for a given date
      * @param DateTime $date Date to retrieve sales for
      * @param int      $page Start page (defaults to 0)
-     * @return array Sales for this date
+     * @return Sale[] Sales for this date
      */
     public function getSalesForDate(DateTime $date, $page = 0) {
         $saleUri = '/reports/sales/date/' . $date->format('Y-m-d');
@@ -65,6 +65,37 @@ class ZanoxClient {
         }
 
         return $sales;
+    }
+
+    /**
+     * Get all leads for a given date
+     * @param DateTime $date Date to retrieve leads for
+     * @param int      $page Start page (defaults to 0)
+     * @return Lead[] Leads for this date
+     */
+    public function getLeadsForDate(DateTime $date, $page = 0) {
+        $saleUri = '/reports/leads/date/' . $date->format('Y-m-d');
+
+        $leadXml = $this->makeRequest($saleUri, '?items=' . $this->itemsPerPage . '&page=' . $page);
+
+        $leads = [];
+
+        if (isset($leadXml->leadItems)) {
+            foreach ($leadXml->leadItems->leadItem as $leadItem) {
+                $leads[] = Lead::createFromXml($leadItem);
+            }
+        }
+
+        // Check whether more iterations are needed:
+        $totalItems = (int)$leadXml->total;
+        $currentPageTotal = (int)$leadXml->items + $this->itemsPerPage * $page;
+
+        // Retrieve more items when
+        if ($totalItems > $currentPageTotal) {
+            $leads = array_merge($leads, $this->getLeadsForDate($date, $page + 1));
+        }
+
+        return $leads;
     }
 
     /**
