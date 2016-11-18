@@ -4,7 +4,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/whitelabeled/zanox-api-client.svg)](https://packagist.org/packages/whitelabeled/zanox-api-client)
 [![License](https://img.shields.io/packagist/l/whitelabeled/zanox-api-client.svg)](https://packagist.org/packages/whitelabeled/zanox-api-client)
 
-Library to retrieve sales from the Zanox publisher API.
+Library to retrieve leads and sales from the Zanox publisher API.
 
 Usage:
 
