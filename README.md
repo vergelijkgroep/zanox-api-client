@@ -96,6 +96,8 @@ Array
             [gpps] => Array
              (
              )
+            [trackingCategory] => Zorg Basis + Aanvullend
+            [trackingCategoryId] => 91291
      )
  */
 ```

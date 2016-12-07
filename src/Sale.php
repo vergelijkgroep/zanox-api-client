@@ -75,6 +75,16 @@ class Sale {
      */
     public $gpps;
 
+    /**
+     * @var string Tracking category
+     */
+    public $trackingCategory;
+
+    /**
+     * @var string Tracking category ID
+     */
+    public $trackingCategoryId;
+
     public static function createFromXml(SimpleXMLElement $saleItem) {
         $sale = new Sale();
 
@@ -99,6 +109,9 @@ class Sale {
         $sale->commission = (double)$saleItem->commission;
 
         $sale->gpps = array();
+
+        $sale->trackingCategory = (string)$saleItem->trackingCategory;
+        $sale->trackingCategoryId = (string)$saleItem->trackingCategory->attributes()->id;
 
         if (isset($saleItem->gpps)) {
             foreach ($saleItem->gpps->gpp as $gppItem) {
