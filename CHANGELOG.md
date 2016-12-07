@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.1
+
+* trackingCategory added
+
 ## v1.2.0
 
 * Added method to retrieve leads
