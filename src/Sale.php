@@ -110,8 +110,10 @@ class Sale {
 
         $sale->gpps = array();
 
-        $sale->trackingCategory = (string)$saleItem->trackingCategory;
-        $sale->trackingCategoryId = (string)$saleItem->trackingCategory->attributes()->id;
+        if ($saleItem->trackingCategory != false) {
+            $sale->trackingCategory = (string)$saleItem->trackingCategory;
+            $sale->trackingCategoryId = (string)$saleItem->trackingCategory->attributes()->id;
+        }
 
         if (isset($saleItem->gpps)) {
             foreach ($saleItem->gpps->gpp as $gppItem) {
