@@ -1,8 +1,12 @@
 # Changelog
 
+## v1.2.2
+
+* Fixed: warnings when trackingCategory was not set for a sale
+
 ## v1.2.1
 
-* trackingCategory added
+* trackingCategory added for sales
 
 ## v1.2.0
 
