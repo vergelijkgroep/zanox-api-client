@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.3.0
+
+* `adSpace` has been renamed to `mediaName`
+* `mediaId` added to Sale and Lead objects
+
 ## v1.2.2
 
 * Fixed: warnings when trackingCategory was not set for a sale
