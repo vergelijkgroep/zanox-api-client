@@ -38,11 +38,6 @@ class Sale {
     /**
      * @var string
      */
-    public $adSpace;
-
-    /**
-     * @var string
-     */
     public $adMedium;
 
     /**
@@ -85,6 +80,16 @@ class Sale {
      */
     public $trackingCategoryId;
 
+    /**
+     * @var integer Adspace ID
+     */
+    public $mediaId;
+
+    /**
+     * @var integer Adspace name
+     */
+    public $mediaName;
+
     public static function createFromXml(SimpleXMLElement $saleItem) {
         $sale = new Sale();
 
@@ -100,7 +105,9 @@ class Sale {
         if (isset($saleItem->modifiedDate)) {
             $sale->modifiedDate = new DateTime($saleItem->modifiedDate);
         }
-        $sale->adSpace = (string)$saleItem->adspace;
+
+        $sale->mediaName = (string)$saleItem->adspace;
+        $sale->mediaId = (string)$saleItem->adspace->attributes()->id;
         $sale->adMedium = (string)$saleItem->admedium;
         $sale->program = (string)$saleItem->program;
         $sale->clickId = (string)$saleItem->clickId;
@@ -117,6 +124,9 @@ class Sale {
 
         if (isset($saleItem->gpps)) {
             foreach ($saleItem->gpps->gpp as $gppItem) {
+                /**
+                 * @var $gppItem SimpleXMLElement
+                 */
                 $gppVarName = (string)$gppItem->attributes()->id;
                 $gppValue = (string)$gppItem;
                 $sale->gpps[$gppVarName] = $gppValue;

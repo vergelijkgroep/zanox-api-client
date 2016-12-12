@@ -33,11 +33,6 @@ class Lead {
     /**
      * @var string
      */
-    public $adSpace;
-
-    /**
-     * @var string
-     */
     public $adMedium;
 
     /**
@@ -65,6 +60,16 @@ class Lead {
      */
     public $gpps;
 
+    /**
+     * @var integer Adspace ID
+     */
+    public $mediaId;
+
+    /**
+     * @var integer Adspace name
+     */
+    public $mediaName;
+
     public static function createFromXml(SimpleXMLElement $leadItem) {
         $lead = new Lead();
 
@@ -79,8 +84,10 @@ class Lead {
         if (isset($leadItem->modifiedDate)) {
             $lead->modifiedDate = new DateTime($leadItem->modifiedDate);
         }
-        $lead->adSpace = (string)$leadItem->adspace;
+
         $lead->adMedium = (string)$leadItem->admedium;
+        $lead->mediaName = (string)$leadItem->adspace;
+        $lead->mediaId = (string)$leadItem->adspace->attributes()->id;
         $lead->program = (string)$leadItem->program;
         $lead->clickId = (string)$leadItem->clickId;
         $lead->currency = (string)$leadItem->currency;
